@@ -65,3 +65,25 @@ def signup_for_activity(activity_name: str, email: str):
     # Add student
     activity["participants"].append(email)
     return {"message": f"Signed up {email} for {activity_name}"}
+
+   # Global list of teachers
+teachers = [
+    {"name": "Mr. Smith", "subject": "Math"},
+    {"name": "Ms. Johnson", "subject": "English"},
+    {"name": "Mr. Brown", "subject": "History"},
+    {"name": "Ms. Davis", "subject": "Science"},
+    {"name": "Mr. Wilson", "subject": "Physical Education"}
+]
+
+# Get list of teachers
+@app.get("/teachers")
+def get_teachers():
+    """Get a list of teachers"""
+    return teachers
+
+# Add a new teacher to the list
+@app.post("/teachers")
+def add_teacher(name: str, subject: str):
+    """Add a new teacher to the list"""
+    teachers.append({"name": name, "subject": subject})
+    return {"message": f"Added {name} to the list of teachers"}
